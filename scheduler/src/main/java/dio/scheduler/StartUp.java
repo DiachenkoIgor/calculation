@@ -40,7 +40,7 @@ public class StartUp {
 
         int id=0;
         while (endPoint<=1) {
-            /*String fPath="script"+id+".sh";
+            String fPath="script"+id+".sh";
             PrintWriter writer = new PrintWriter(fPath, "UTF-8");
             writer.println("#!/bin/bash");
             String command = String.format("java -jar %s %s %s %s %s", pathToJar, String.valueOf(endPoint), String.valueOf(startPoint),
@@ -53,10 +53,7 @@ public class StartUp {
             f.setWritable(true, true);
             f.setExecutable(true);
 
-            ProcessBuilder pb = new ProcessBuilder( "qsub","-I","-x","./"+fPath);*/
-            ProcessBuilder pb=new ProcessBuilder("java","-jar",
-                    pathToJar, String.valueOf(endPoint), String.valueOf(startPoint),
-                    String.valueOf(quantityOfRows), pathToDb);
+            ProcessBuilder pb = new ProcessBuilder( "qsub","-I","-x","./"+fPath);
             Process process = pb.start();
             taskExecutor.execute(new WorkerHandler(process, pairCouples,String.valueOf(id)));
             startPoint+=endPoint;
